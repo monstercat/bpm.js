@@ -1,0 +1,29 @@
+{
+  "name": "bpm.js",
+  "description": "Calculate bpm from raw audio",
+  "keywords": [
+    "bpm"
+  ],
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jb55/bpm.git"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "README.md"
+  ]
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "dependencies": {
+    "debug": "^2.1.1",
+    "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "blocked": "^1.1.0",
+    "expect.js": "*",
+    "mocha": "*"
+  }
+}
