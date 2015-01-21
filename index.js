@@ -20,8 +20,8 @@ var INTERVAL = 128
  * take a random sample of samples, any errors are averaged out.
  */
 function sample(nrg, len, offset) {
-	var n = Math.floor(offset);
-	return (n >= 0.0 && n < len) ? nrg[n] : 0.0;
+  var n = Math.floor(offset);
+  return (n >= 0.0 && n < len) ? nrg[n] : 0.0;
 }
 
 var beats = [ -32, -16, -8, -4, -2, -1,
@@ -33,30 +33,30 @@ var nobeats = [ -0.5, -0.25, 0.25, 0.5 ];
  */
 function autodifference(nrg, len, interval)
 {
-	var n, y, w;
-	var mid, v, diff, total;
+  var n, y, w;
+  var mid, v, diff, total;
 
-	mid = Math.random() * len;
-	v = sample(nrg, len, mid);
+  mid = Math.random() * len;
+  v = sample(nrg, len, mid);
 
-	diff = 0.0;
-	total = 0.0;
+  diff = 0.0;
+  total = 0.0;
 
-	for (n = 0; n < beats.length; n++) {
-		y = sample(nrg, len, mid + beats[n] * interval);
-		w = 1.0 / Math.abs(beats[n]);
-		diff += w * Math.abs(y - v);
-		total += w;
-	}
+  for (n = 0; n < beats.length; n++) {
+    y = sample(nrg, len, mid + beats[n] * interval);
+    w = 1.0 / Math.abs(beats[n]);
+    diff += w * Math.abs(y - v);
+    total += w;
+  }
 
-	for (n = 0; n < nobeats.length; n++) {
-		y = sample(nrg, len, mid + nobeats[n] * interval);
-		w = Math.abs(nobeats[n]);
-		diff -= w * Math.abs(y - v);
-		total += w;
-	}
+  for (n = 0; n < nobeats.length; n++) {
+    y = sample(nrg, len, mid + nobeats[n] * interval);
+    w = Math.abs(nobeats[n]);
+    diff -= w * Math.abs(y - v);
+    total += w;
+  }
 
-	return diff / total;
+  return diff / total;
 }
 
 /*
@@ -65,9 +65,9 @@ function autodifference(nrg, len, interval)
 
 function bpmToInterval(bpm)
 {
-	var beatsPerSecond = bpm / 60;
-	var samplesPerBeat = RATE / beatsPerSecond;
-	return samplesPerBeat / INTERVAL;
+  var beatsPerSecond = bpm / 60;
+  var samplesPerBeat = RATE / beatsPerSecond;
+  return samplesPerBeat / INTERVAL;
 }
 
 /*
@@ -76,9 +76,9 @@ function bpmToInterval(bpm)
 
 function intervalToBPM(interval)
 {
-	var samplesPerBeat = interval * INTERVAL;
-	var beatsPerSecond = RATE / samplesPerBeat;
-	return beatsPerSecond * 60;
+  var samplesPerBeat = interval * INTERVAL;
+  var beatsPerSecond = RATE / samplesPerBeat;
+  return beatsPerSecond * 60;
 }
 
 /*
@@ -87,16 +87,16 @@ function intervalToBPM(interval)
  */
 
 function scanForBPM(nrg, len, slowest, fastest, steps, samples, done) {
-	slowest = bpmToInterval(slowest);
-	fastest = bpmToInterval(fastest);
+  slowest = bpmToInterval(slowest);
+  fastest = bpmToInterval(fastest);
   debug("slowest %d", slowest)
   debug("fastest %d", fastest)
   debug("samples %d", samples)
-	var step = (slowest - fastest) / steps;
+  var step = (slowest - fastest) / steps;
 
   var intervals = [];
-	var height = Infinity;
-	var trough = NaN;
+  var height = Infinity;
+  var trough = NaN;
   var i = 0;
   var interval = fastest;
 
@@ -109,10 +109,10 @@ function scanForBPM(nrg, len, slowest, fastest, steps, samples, done) {
     for (var s = 0; s < samples; ++s)
       t += autodifference(nrg, len, interval)
 
-		if (t < height) {
-			trough = interval;
-			height = t;
-		}
+    if (t < height) {
+      trough = interval;
+      height = t;
+    }
 
     interval += step
     setImmediate(autodiff)
@@ -121,7 +121,7 @@ function scanForBPM(nrg, len, slowest, fastest, steps, samples, done) {
   autodiff()
 
   debug("trough", trough)
-	return intervalToBPM(trough);
+  return intervalToBPM(trough);
 }
 
 function bufRead(arr, i) {
