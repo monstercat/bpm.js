@@ -1,6 +1,7 @@
 'use strict';
 
 var through = require('through2')
+var rng = require('seedrandom')('bpm.js')
 var debug = require("debug")("bpm")
 
 
@@ -36,7 +37,7 @@ function autodifference(nrg, len, interval)
   var n, y, w;
   var mid, v, diff, total;
 
-  mid = Math.random() * len;
+  mid = rng() * len;
   v = sample(nrg, len, mid);
 
   diff = 0.0;
