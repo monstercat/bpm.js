@@ -4,10 +4,10 @@
   "keywords": [
     "bpm"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jb55/bpm.git"
+    "url": "https://github.com/monstercat/bpm.js"
   },
   "main": "index.js",
   "files": [
