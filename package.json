@@ -15,7 +15,7 @@
     "README.md"
   ],
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --timeout 5000 --reporter spec"
   },
   "dependencies": {
     "debug": "^2.1.1",
