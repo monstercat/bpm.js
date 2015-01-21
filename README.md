@@ -1,5 +1,5 @@
 
-# bpm
+# bpm [![Build Status](https://travis-ci.org/monstercat/bpm.js.svg)](https://travis-ci.org/monstercat/bpm.js)
 
   Calculate bpm from a raw audio stream. pure js. non blocking.
 
