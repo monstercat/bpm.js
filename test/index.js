@@ -14,12 +14,12 @@ function createAudioStream() {
 
 describe('bpm calc', function(){
   it('works', function(done){
-    var bpmSink = createBpmSink()
-    createAudioStream().pipe(bpmSink)
-
     blocked(function(ms){
       throw Error("BLOCKED FOR "+ms+"+ms")
     });
+
+    var bpmSink = createBpmSink()
+    createAudioStream().pipe(bpmSink)
 
     bpmSink.on("bpm", function(bpm){
       expect(Math.floor(bpm)).to.be(128)
