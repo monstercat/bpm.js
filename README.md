@@ -24,8 +24,10 @@ createAudioStream("track.mp3")
 
 // needed to convert mp3 to proper format
 function createAudioStream(filename) {
-  var sox = spawn("sox", [filename, "-t", "raw", "-r", "44100", "-e", "float", "-c", "1", "-"])
-  return sox.stdout;
+  var args = "-t raw -r 44100 -e float -c 1 -".split(" ")
+  args.unshift(filename)
+  var sox = spawn("sox", args)
+  return sox.stdout
 }
 
 
