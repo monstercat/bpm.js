@@ -175,7 +175,6 @@ function bpmCalcSink(opts) {
   function end() {
     var self = this;
     scanForBPM(nrg, len, min, max, 1024, 1024, function(err, bpm){
-      console.log("bpm", bpm)
       self.emit("bpm", bpm)
     })
   }
