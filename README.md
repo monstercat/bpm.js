@@ -30,7 +30,17 @@ function createAudioStream(filename) {
   return sox.stdout
 }
 
+```
 
+## Tests
+
+`$ npm test`
+
+To make the tests pass install the following native dependencies:
+
+```
+apt-get install sox
+apt-get install libsox-fmt-mp3
 ```
 
 ## Brought to you by...
